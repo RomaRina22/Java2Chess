@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="577.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+  <buttons>
+      <AnchorPane prefHeight="720.0" prefWidth="720.0">
+         <children>
+          <Button fx:id="BttPlay" layoutX="179.0" layoutY="101.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Play" />
+            <Button fx:id="BttOptions" layoutX="179.0" layoutY="151.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Options" />
+            <Button fx:id="BttExit" layoutX="179.0" layoutY="202.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="178.0" text="Exit" />
+            <ComboBox fx:id="CBoxLang" layoutX="23.0" layoutY="316.0" prefWidth="150.0" promptText="English" />
+         </children>
+      </AnchorPane>
+  </buttons>
+</ButtonBar>
