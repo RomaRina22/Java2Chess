@@ -64,6 +64,13 @@ public class Board {
 		}
 	}
 	
+	public boolean movePiece (Spot origin, Spot target) {
+		if (origin.getState().equals(SpotStates.SELECTED) && (target.getState().equals(SpotStates.AVAILABLE) || target.getState().equals(SpotStates.TARGETTED))) { 
+			target.setPiece(origin.removePiece());
+			return true;
+		}
+		return false;
+	}
 	public HashSet<Spot> getAvailableMoves (Spot origin) {
 		Player owner = origin.getPiece().getOwner();
 		int ownerDirection = playerDirections[GameSettings.allPlayers.indexOf(owner)];
