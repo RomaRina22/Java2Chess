@@ -71,12 +71,27 @@ public class Board {
 		}
 		return false;
 	}
+	
 	public boolean movePiece (Spot origin, Spot target) {
 		if (origin.getState().equals(SpotStates.SELECTED) && (target.getState().equals(SpotStates.AVAILABLE) || target.getState().equals(SpotStates.TARGETTED))) { 
 			target.setPiece(origin.removePiece());
 			return true;
 		}
 		return false;
+	}
+	
+	public void updateSpotStates (Spot origin, HashSet<Spot> targets) {
+		Player owner = origin.getPiece().getOwner();
+		for (Spot temp: targets) {
+			if (temp.getPiece() == null) {
+				if (temp.getState() != SpotStates.LOCKED) {
+					temp.setState(SpotStates.AVAILABLE);
+				}
+			}
+			else if (temp.getPiece().getOwner() != owner) {
+				temp.setState(SpotStates.TARGETTED);
+			}
+		}
 	}
 	
 	public HashSet<Spot> getAvailableMoves (Spot origin) {
@@ -115,5 +130,12 @@ public class Board {
 			}
 		}
 		return returnSpots;
+	}
+	
+	public void nextTurn() {
+		currentPlayerTurn++;
+		if (playerDirections[currentPlayerTurn] == 0 || currentPlayerTurn > 6) {
+			currentPlayerTurn = 0;
+		}
 	}
 }
