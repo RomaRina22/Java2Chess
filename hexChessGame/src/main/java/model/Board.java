@@ -46,7 +46,7 @@ public class Board {
 		this.playerDirections = playerDirections;
 	}
 
-	private Spot getSpotByCoords (int[] coords) {
+	public Spot getSpotByCoords (int[] coords) {
 		if (coords[0] > size || coords[1] > size) {
 			return null;
 		}
