@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameSettings {
 	private Board ActiveBoard;
-	private ArrayList<Board> allBoards;
+	public static ArrayList<Board> allBoards = new ArrayList<>();
 	private GameState gameState;
 	private ArrayList<Player> players;
 	private int gameTurn;
