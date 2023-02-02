@@ -64,6 +64,13 @@ public class Board {
 		}
 	}
 	
+	public boolean selectPiece (Spot target) {
+		if (target.getPiece().getOwner().equals(GameSettings.allPlayers.get(currentPlayerTurn))) {
+			target.setState(SpotStates.SELECTED);
+			return true;
+		}
+		return false;
+	}
 	public boolean movePiece (Spot origin, Spot target) {
 		if (origin.getState().equals(SpotStates.SELECTED) && (target.getState().equals(SpotStates.AVAILABLE) || target.getState().equals(SpotStates.TARGETTED))) { 
 			target.setPiece(origin.removePiece());
@@ -71,6 +78,7 @@ public class Board {
 		}
 		return false;
 	}
+	
 	public HashSet<Spot> getAvailableMoves (Spot origin) {
 		Player owner = origin.getPiece().getOwner();
 		int ownerDirection = playerDirections[GameSettings.allPlayers.indexOf(owner)];
