@@ -54,6 +54,16 @@ public class Board {
 		}
 	}
 	
+	public void resetSpotStates () { //wipes spot states to calm if not locked
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (!spots[i][j].getState().equals(SpotStates.LOCKED)) {
+					spots[i][j].setState(SpotStates.CALM);
+				}
+			}
+		}
+	}
+	
 	public HashSet<Spot> getAvailableMoves (Spot origin) {
 		Player owner = origin.getPiece().getOwner();
 		int ownerDirection = playerDirections[GameSettings.allPlayers.indexOf(owner)];
