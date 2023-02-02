@@ -2,10 +2,11 @@ package model;
 
 public class Spot {
 	private Piece piece;
+	private int[] coords;
 	private SpotStates state = SpotStates.CALM;
 	
-	public Spot() {
-		
+	public Spot(int x, int y) {
+		coords = new int[] {x, y};
 	}
 
 	public Piece getPiece() {
