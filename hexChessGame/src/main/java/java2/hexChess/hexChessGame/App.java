@@ -33,7 +33,7 @@ public class App extends Application {
         Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
         Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
         
-        stage.setScene(Scenes.get("menu"));
+        stage.setScene(Scenes.get("gamefield"));
         stage.show();
     }
 
