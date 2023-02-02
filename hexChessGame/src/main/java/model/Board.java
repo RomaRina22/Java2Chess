@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Board {
@@ -138,4 +139,18 @@ public class Board {
 			currentPlayerTurn = 0;
 		}
 	}
+
+	@Override
+	public String toString() {
+		String retstr = "";
+		for (int i = 0; i < size;i++) {
+			for (int j = 0; j < size; j++) {
+				retstr += String.format("%7d", spots[j][i].getPiece());
+			}
+			retstr += "\n";
+		}
+		return retstr;
+	}
+	
+	
 }
