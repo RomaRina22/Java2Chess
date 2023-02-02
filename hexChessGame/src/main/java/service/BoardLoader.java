@@ -84,8 +84,15 @@ public class BoardLoader {
 		pieces.put("rook", rook);
 		pieces.put("knight", knight);
 	}
+	
 	public static Board board1() {
-		return new Board(1, "board1");
+		Board boardOne = new Board(11, "board1");
+		System.out.println(boardOne);
+		
+		System.out.println(boardOne);
+		
+		return boardOne;
+		
 	}
 	
 	
