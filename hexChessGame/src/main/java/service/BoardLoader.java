@@ -88,7 +88,20 @@ public class BoardLoader {
 	public static Board board1() {
 		Board boardOne = new Board(11, "board1");
 		System.out.println(boardOne);
-		
+		ArrayList<int[]> lockspots = new ArrayList<>();
+		lockspots.add(new int[] {0,0});lockspots.add(new int[] {1,0});lockspots.add(new int[] {8,0});lockspots.add(new int[] {9,0});lockspots.add(new int[] {10,0});
+		lockspots.add(new int[] {0,1});lockspots.add(new int[] {1,1});lockspots.add(new int[] {9,1});lockspots.add(new int[] {10,1});
+		lockspots.add(new int[] {0,2});lockspots.add(new int[] {9,2});lockspots.add(new int[] {10,2});
+		lockspots.add(new int[] {0,3});lockspots.add(new int[] {10,3});
+		lockspots.add(new int[] {10,4});
+		lockspots.add(new int[] {10,6});
+		lockspots.add(new int[] {0,7});lockspots.add(new int[] {10,7});
+		lockspots.add(new int[] {0,8});lockspots.add(new int[] {9,8});lockspots.add(new int[] {10,8});
+		lockspots.add(new int[] {0,9});lockspots.add(new int[] {1,9});lockspots.add(new int[] {9,9});lockspots.add(new int[] {10,9});
+		lockspots.add(new int[] {0,10});lockspots.add(new int[] {1,10});lockspots.add(new int[] {8,10});lockspots.add(new int[] {9,10});lockspots.add(new int[] {10,10});
+		for (int[] coord: lockspots) {
+			boardOne.getSpotByCoords(coord).setState(SpotStates.LOCKED);
+		}
 		System.out.println(boardOne);
 		
 		return boardOne;
