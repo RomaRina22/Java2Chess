@@ -6,7 +6,7 @@ public class GameSettings {
 	private Board ActiveBoard;
 	public static ArrayList<Board> allBoards = new ArrayList<>();
 	private GameState gameState;
-	public static ArrayList<Player> allPlayers;
+	public static ArrayList<Player> allPlayers = new ArrayList<>();
 	private int gameTurn;
 	
 	

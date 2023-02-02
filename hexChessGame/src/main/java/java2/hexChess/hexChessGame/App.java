@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.GameSettings;
+import model.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,9 +24,16 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
+    	for (int i = 0; i<6; i++) {
+        	GameSettings.allPlayers.add(new Player("Player_" + (i+1), new Color(0.75, 0.75, 0.75, 1.0)));
+        }
+        System.out.println(GameSettings.getPlayers());
     	
-        scene = new Scene(loadFXML("menu"), 640, 480);
-        stage.setScene(scene);
+        Scenes.put("menu", new Scene(loadFXML("Menu"), 720, 720));
+        Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
+        Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
+        
+        stage.setScene(Scenes.get("menu"));
         stage.show();
     }
 
