@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Board {
 	private String name;
 	private Spot[][] spots;
-	private int[] playerdirections = {1,3,0,0,0,0};
+	private int[] playerdirections = {1,4,0,0,0,0}; //default player movement directions 
+	private int currentPlayerTurn = 0; 
 	
 	public Board (int size, String name) {
 		this.name = name;
