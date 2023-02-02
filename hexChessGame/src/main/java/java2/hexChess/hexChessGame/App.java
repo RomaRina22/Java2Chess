@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.GameSettings;
 import model.Player;
+import service.BoardLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class App extends Application {
         Scenes.put("menu", new Scene(loadFXML("Menu"), 720, 720));
         Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
         Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
+        BoardLoader Boarder = new BoardLoader();
+        Boarder.initpieces();
+        GameSettings.allBoards.add(BoardLoader.board1());
         
         stage.setScene(Scenes.get("gamefield"));
         stage.show();
