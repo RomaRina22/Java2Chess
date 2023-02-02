@@ -6,7 +6,7 @@ public class GameSettings {
 	private Board ActiveBoard;
 	public static ArrayList<Board> allBoards = new ArrayList<>();
 	private GameState gameState;
-	private ArrayList<Player> players;
+	public static ArrayList<Player> allPlayers;
 	private int gameTurn;
 	public Board getActiveBoard() {
 		return ActiveBoard;
@@ -21,10 +21,7 @@ public class GameSettings {
 		this.gameState = gameState;
 	}
 	public ArrayList<Player> getPlayers() {
-		return players;
-	}
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
+		return allPlayers;
 	}
 	public int getGameTurn() {
 		return gameTurn;
