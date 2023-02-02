@@ -8,6 +8,8 @@ public class GameSettings {
 	private GameState gameState;
 	public static ArrayList<Player> allPlayers;
 	private int gameTurn;
+	
+	
 	public Board getActiveBoard() {
 		return ActiveBoard;
 	}
