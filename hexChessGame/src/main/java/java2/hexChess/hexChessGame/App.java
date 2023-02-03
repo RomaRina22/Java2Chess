@@ -18,7 +18,7 @@ import java.util.HashMap;
  * JavaFX App
  */
 public class App extends Application {
-
+	public static Stage mainStage;
     private static Scene scene;
     public static HashMap<String,Scene> Scenes = new HashMap<>();
     public static GameSettings GameSettings = new GameSettings();
@@ -36,7 +36,7 @@ public class App extends Application {
         BoardLoader Boarder = new BoardLoader();
         Boarder.initpieces();
         GameSettings.allBoards.add(BoardLoader.board1());
-        
+        mainStage = stage;
         stage.setScene(Scenes.get("gamefield"));
         stage.show();
     }
