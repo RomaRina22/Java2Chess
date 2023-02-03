@@ -140,5 +140,27 @@ public class BoardLoader {
 		
 	}
 	
+	public static Board board2() {
+		int size = 6;
+		Player player1 = App.GameSettings.allPlayers.get(0);
+		Player player2 = App.GameSettings.allPlayers.get(1);
+		Player player3 = App.GameSettings.allPlayers.get(2);
+		Player player4 = App.GameSettings.allPlayers.get(3);
+		Player player5 = App.GameSettings.allPlayers.get(4);
+		Player player6 = App.GameSettings.allPlayers.get(5);
+		
+		Board boardTwo = new Board(size, "board2");
+		boardTwo.setPlayerDirections(new int[] {1,2,3,4,5,6});
+		
+		boardTwo.getSpotByCoords(new int[] {1 , 1}).setPiece(new Piece(player1,pieces.get("pawn")));
+		boardTwo.getSpotByCoords(new int[] {2 , 2}).setPiece(new Piece(player2,pieces.get("pawn")));
+		boardTwo.getSpotByCoords(new int[] {3 , 1}).setPiece(new Piece(player3,pieces.get("pawn")));
+		boardTwo.getSpotByCoords(new int[] {4 , 1}).setPiece(new Piece(player4,pieces.get("pawn")));
+		boardTwo.getSpotByCoords(new int[] {3 , 4}).setPiece(new Piece(player5,pieces.get("pawn")));
+		boardTwo.getSpotByCoords(new int[] {3 , 3}).setPiece(new Piece(player6,pieces.get("pawn")));
+		
+		
+		return boardTwo;
+	}
 	
 }
