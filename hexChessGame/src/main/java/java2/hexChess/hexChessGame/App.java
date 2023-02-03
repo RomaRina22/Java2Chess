@@ -31,15 +31,15 @@ public class App extends Application {
         }
         System.out.println(GameSettings.getPlayers());
     	
-        Scenes.put("menu", new Scene(loadFXML("Menu"), 720, 720));
-        Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
-        Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
         BoardLoader Boarder = new BoardLoader();
         Boarder.initpieces();
         GameSettings.allBoards.add(BoardLoader.board1());
         GameSettings.setActiveBoard(GameSettings.allBoards.get(0));
+        Scenes.put("menu", new Scene(loadFXML("Menu"), 720, 720));
+        Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
+        Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
         mainStage = stage;
-        stage.setScene(Scenes.get("gamefield"));
+        stage.setScene(Scenes.get("menu"));
         stage.show();
     }
 
