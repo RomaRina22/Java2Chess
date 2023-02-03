@@ -8,6 +8,7 @@ import java.util.HashMap;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java2.hexChess.hexChessGame.App;
+import javafx.scene.image.Image;
 import model.*;
 
 public class BoardLoader {
@@ -19,19 +20,20 @@ public class BoardLoader {
 		ArrayList<MovePattern> pawnMoves = new ArrayList<>();
 		pawnMoves.add(new MovePattern(1, 1, 1, false, null));
 		pawnMoves.add(new MovePattern(2, 1, 1, false, null));
-		PieceType pawn = new PieceType("pawn",getClass().getResource("/img/pawn.png"),pawnMoves);
+		PieceType pawn = new PieceType("pawn",new Image(getClass().getResourceAsStream("/img/pawn.png")),pawnMoves);
+		System.out.print("got pawn image!");
 		
 		ArrayList<MovePattern> queenMoves = new ArrayList<>();
 		for (int i = 1; i < 7; i++) {
 			queenMoves.add(new MovePattern(i, 1, 100, false, null));
 		}
-		PieceType queen = new PieceType("queen",getClass().getResource("/img/queen.png"),queenMoves);
+		PieceType queen = new PieceType("queen",new Image(getClass().getResourceAsStream("/img/queen.png")),queenMoves);
 		
 		ArrayList<MovePattern> kingMoves = new ArrayList<>();
 		for (int i = 1; i < 7; i++) {
 			kingMoves.add(new MovePattern(i, 1, 1, false, null));
 		}
-		PieceType king = new PieceType("king", getClass().getResource("/img/king.png"), null);
+		PieceType king = new PieceType("king", new Image(getClass().getResourceAsStream("/img/king.png")), null);
 		
 		ArrayList<MovePattern> rookMoves = new ArrayList<>();
 		for (int i = 1; i < 7; i++) {
@@ -42,7 +44,7 @@ public class BoardLoader {
 				rookMoves.add(new MovePattern(i, 1, 100, false, null));
 			}
 		}
-		PieceType rook = new PieceType("rook", getClass().getResource("/img/rook.png"), rookMoves);
+		PieceType rook = new PieceType("rook", new Image(getClass().getResourceAsStream("/img/rook.png")), rookMoves);
 		
 		ArrayList<MovePattern> knightMoves = new ArrayList<>();
 		for (int i = 1; i < 7; i++) {
@@ -78,7 +80,7 @@ public class BoardLoader {
 		extra6.add(new MovePattern(2, 1, 1, false, null));
 		extra6.add(new MovePattern(4, 1, 1, false, null));
 		knightMoves.add(new MovePattern(6, 2, 2, true, extra6));
-		PieceType knight = new PieceType("knight", getClass().getResource("/img/knight.png"), knightMoves);
+		PieceType knight = new PieceType("knight", new Image(getClass().getResourceAsStream("/img/knight.png")), knightMoves);
 		
 		pieces.put("queen", queen);
 		pieces.put("king", king);
@@ -109,27 +111,27 @@ public class BoardLoader {
 		for (int i = 0;i < size;i++) {
 			Spot spot = boardOne.getSpotByCoords(new int[]{i,1});
 			if (spot.getState().equals(SpotStates.CALM)) {
-				spot.setPiece(new Piece(player1, pieces.get("pawn")));
+				spot.setPiece(new Piece(player2, pieces.get("pawn")));
 			}
 		}
 		for (int i = 0;i < size;i++) {
 			Spot spot = boardOne.getSpotByCoords(new int[]{i,9});
 			if (spot.getState().equals(SpotStates.CALM)) {
-				spot.setPiece(new Piece(player2, pieces.get("pawn")));
+				spot.setPiece(new Piece(player1, pieces.get("pawn")));
 			}
 		}
-		boardOne.getSpotByCoords(new int[] {2, 0}).setPiece(new Piece(player1, pieces.get("rook")));
-		boardOne.getSpotByCoords(new int[] {7, 0}).setPiece(new Piece(player1, pieces.get("rook")));
-		boardOne.getSpotByCoords(new int[] {2, 10}).setPiece(new Piece(player2, pieces.get("rook")));
-		boardOne.getSpotByCoords(new int[] {7, 10}).setPiece(new Piece(player2, pieces.get("rook")));
-		boardOne.getSpotByCoords(new int[] {3, 0}).setPiece(new Piece(player1, pieces.get("knight")));
-		boardOne.getSpotByCoords(new int[] {6, 0}).setPiece(new Piece(player1, pieces.get("knight")));
-		boardOne.getSpotByCoords(new int[] {3, 10}).setPiece(new Piece(player2, pieces.get("knight")));
-		boardOne.getSpotByCoords(new int[] {6, 10}).setPiece(new Piece(player2, pieces.get("knight")));
-		boardOne.getSpotByCoords(new int[] {5, 0}).setPiece(new Piece(player1, pieces.get("king")));
-		boardOne.getSpotByCoords(new int[] {5, 10}).setPiece(new Piece(player2, pieces.get("king")));
-		boardOne.getSpotByCoords(new int[] {4, 0}).setPiece(new Piece(player1, pieces.get("queen")));
-		boardOne.getSpotByCoords(new int[] {4, 10}).setPiece(new Piece(player2, pieces.get("queen")));
+		boardOne.getSpotByCoords(new int[] {2, 0}).setPiece(new Piece(player2, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {7, 0}).setPiece(new Piece(player2, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {2, 10}).setPiece(new Piece(player1, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {7, 10}).setPiece(new Piece(player1, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {3, 0}).setPiece(new Piece(player2, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {6, 0}).setPiece(new Piece(player2, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {3, 10}).setPiece(new Piece(player1, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {6, 10}).setPiece(new Piece(player1, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {5, 0}).setPiece(new Piece(player2, pieces.get("king")));
+		boardOne.getSpotByCoords(new int[] {5, 10}).setPiece(new Piece(player1, pieces.get("king")));
+		boardOne.getSpotByCoords(new int[] {4, 0}).setPiece(new Piece(player2, pieces.get("queen")));
+		boardOne.getSpotByCoords(new int[] {4, 10}).setPiece(new Piece(player1, pieces.get("queen")));
 		
 		
 		System.out.println(boardOne);
