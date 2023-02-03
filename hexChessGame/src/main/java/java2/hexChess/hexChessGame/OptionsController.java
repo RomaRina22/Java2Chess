@@ -23,14 +23,19 @@ public class OptionsController {
 		private Parent parent;
 		public static model.Color temp;
 		
+		
+		
 		@FXML
 		private TextField TextName;
 	    @FXML
 	    private Button backButton;
 	    @FXML
 		private ComboBox<model.Color> CboxColor;
-
 	    @FXML
+	    private ComboBox<String> BttBoardName;
+	    
+
+	    /*@FXML
 	    private void goBack(ActionEvent event) throws IOException {
 	    Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 	 //   stage = (Stage)((Node)event.getSource()).getScene().getWindow()
@@ -39,9 +44,11 @@ public class OptionsController {
 	    stage.show();
 	    	
 	    }
-	  
-			
-		
+	    */
+	    /*checkComboBox.addEventHandler(BttBoardName.ON_HIDDEN, event -> {
+	        System.out.println("CheckComboBox is now hidden.");
+	    });
+		*/
 	    
 	    @FXML
 	    private void saveit(ActionEvent event) {
