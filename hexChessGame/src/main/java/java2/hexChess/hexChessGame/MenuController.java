@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 
 public class MenuController {
 	public void playGame() {
+		GamefieldController.reloadField();
 		App.mainStage.setScene(App.Scenes.get("gamefield"));
 	}
 	public void openOptions() {
