@@ -25,8 +25,9 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
+    	Color[] defaultColors = new Color[] {Color.HOTPINK,Color.TEAL,Color.ORANGE,Color.BISQUE,Color.DARKGREEN,Color.DARKGOLDENROD};
     	for (int i = 0; i<6; i++) {
-        	GameSettings.allPlayers.add(new Player("Player_" + (i+1), new Color(0.75, 0.75, 0.75, 1.0)));
+        	GameSettings.allPlayers.add(new Player("Player_" + (i+1), defaultColors[i]));
         }
         System.out.println(GameSettings.getPlayers());
     	
