@@ -47,7 +47,13 @@ public class Board {
 	public void setPlayerDirections(int[] playerDirections) {
 		this.playerDirections = playerDirections;
 	}
+	
 
+	public int[] getPlayerDirections() {
+		return playerDirections;
+	}
+	
+	
 	public Spot getSpotByCoords (int[] coords) {
 		if (coords[0] >= size || coords[1] >= size|| coords[0] < 0 || coords[1] < 0) {
 			return null;
@@ -138,9 +144,12 @@ public class Board {
 			Spot turtle;
 			for (MovePattern currentMove: moves) {
 				turtle = origin;
-				int movingDirection = (currentMove.getDirection() + ownerDirection-1)%6 ;
+				int movingDirection = (currentMove.getDirection() + (ownerDirection-1));
+				if (movingDirection > 6) {movingDirection-=6;}
 				int i = 1;
 				while (i <= currentMove.getMaxDistance()) {
+					System.out.println("turtle at "+turtle.coords[0]+" "+turtle.coords[1]);
+					System.out.println("turtle going "+movingDirection);
 					turtle = getSpotByCoords(turtle.getNeighborCoords(movingDirection)); //move turtle forward by one space
 					if (turtle == null) {break;} //if going off board stop moving
 					if (turtle.getPiece() != null && !currentMove.getPassthrough()) { //if current spot is occupied and piece cant pass add the spot to moves and go to next move
