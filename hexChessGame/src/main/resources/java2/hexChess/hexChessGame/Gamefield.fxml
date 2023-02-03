@@ -7,8 +7,6 @@
 
 <AnchorPane  fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2.hexChess.hexChessGame.GamefieldController">
    <children>
-      <Label fx:id="LBp1" layoutX="38.0" layoutY="21.0" prefHeight="17.0" prefWidth="79.0" text="Player1" />
-      <Label fx:id="LBp2" layoutX="38.0" layoutY="47.0" prefHeight="17.0" prefWidth="79.0" text="Player2" />
-      <Button fx:id="BttBack" layoutX="26.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Back" />
+      <Button fx:id="BttBack" layoutX="26.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Back" onAction="#goBack"/>
    </children>
 </AnchorPane>
