@@ -16,14 +16,15 @@ import javafx.scene.shape.Shape;
 
 public class GamefieldController {
 	@FXML AnchorPane anchor;
+	@FXML Button BttBack;
 	static Background selected = new Background(new BackgroundFill(Color.GREENYELLOW, null, null));
 	static Background targetted = new Background(new BackgroundFill(Color.ORANGERED, null, null));
 	static Background available = new Background(new BackgroundFill(Color.LIGHTGRAY, null, null));
 	static Background calm = new Background(new BackgroundFill(Color.DARKGRAY, null, null));
-	
+	static SVGPath hexagon;
 	public void initialize() {
 		Button newbutt = new Button();
-		SVGPath hexagon = new SVGPath();
+		hexagon = new SVGPath();
 		hexagon.setContent("M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z");
 		hexagon.setFill(Color.AZURE);
 		newbutt.setShape(hexagon);
@@ -33,7 +34,7 @@ public class GamefieldController {
 		Hexatwo.setContent("M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z");
 		Hexatwo.setFill(Color.ORANGE);
 		otherbutt.setShape(hexagon);
-		otherbutt.setMinSize(50.0,50.0);
+		otherbutt.setMinSize(70.0,70.0);
 		otherbutt.setLayoutX(60.0);
 		otherbutt.setBackground(new Background(new BackgroundFill(Color.AZURE,null,null)));
 		otherbutt.setOnAction(new EventHandler<ActionEvent>() {
@@ -48,4 +49,8 @@ public class GamefieldController {
 	private static void renderField() {
 		
 	} 
+	
+	public void goBack() {
+		App.mainStage.setScene(App.Scenes.get("menu"));
+	}
 }
