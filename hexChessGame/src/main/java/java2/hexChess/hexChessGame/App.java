@@ -34,11 +34,13 @@ public class App extends Application {
         BoardLoader Boarder = new BoardLoader();
         Boarder.initpieces();
         GameSettings.allBoards.add(BoardLoader.board1());
+        GameSettings.allBoards.add(BoardLoader.board2());
         GameSettings.setActiveBoard(GameSettings.allBoards.get(0));
+        mainStage = stage;
         Scenes.put("menu", new Scene(loadFXML("Menu"), 720, 720));
         Scenes.put("options" , new Scene(loadFXML("Options"), 720, 720));
-        Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),720,720));
-        mainStage = stage;
+        Scenes.put("gamefield", new Scene(loadFXML("Gamefield"),1080,1080));
+        
         stage.setScene(Scenes.get("menu"));
         stage.show();
     }
