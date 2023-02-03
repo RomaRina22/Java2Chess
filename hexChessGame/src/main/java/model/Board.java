@@ -10,6 +10,8 @@ public class Board {
 	private int[] playerDirections = {1,4,0,0,0,0}; //default player movement directions 
 	private int currentPlayerTurn = 0;
 	private int size;
+	private BoardState state = BoardState.CALM;
+	private Spot selectedPiece;
 	
 	public Board (int size, String name) {
 		this.name = name;
@@ -47,7 +49,7 @@ public class Board {
 	}
 
 	public Spot getSpotByCoords (int[] coords) {
-		if (coords[0] > size || coords[1] > size) {
+		if (coords[0] >= size || coords[1] >= size|| coords[0] < 0 || coords[1] < 0) {
 			return null;
 		}
 		else {
@@ -66,16 +68,37 @@ public class Board {
 	}
 	
 	public boolean selectPiece (Spot target) {
-		if (target.getPiece().getOwner().equals(GameSettings.allPlayers.get(currentPlayerTurn))) {
-			target.setState(SpotStates.SELECTED);
-			return true;
+		if (state.equals(BoardState.CALM)) {
+			if (target.getPiece().getOwner().equals(GameSettings.allPlayers.get(currentPlayerTurn))) {
+				target.setState(SpotStates.SELECTED);
+				updateSpotStates(target, getAvailableMoves(target));
+				selectedPiece = target;
+				state = BoardState.SELECTED;
+				return true;
+			}
+			return false;
 		}
-		return false;
+		else {
+			if (target.getState().equals(SpotStates.AVAILABLE) || target.getState().equals(SpotStates.TARGETTED)) {
+				movePiece(selectedPiece, target);
+				resetSpotStates();
+				nextTurn();
+				state = BoardState.CALM;
+				return true;
+			}
+			else {
+				resetSpotStates();
+				state = BoardState.CALM;
+				return true;
+			}
+		}
 	}
 	
 	public boolean movePiece (Spot origin, Spot target) {
 		if (origin.getState().equals(SpotStates.SELECTED) && (target.getState().equals(SpotStates.AVAILABLE) || target.getState().equals(SpotStates.TARGETTED))) { 
 			target.setPiece(origin.removePiece());
+			System.out.println("moved "+origin+" to "+target+".");
+			System.out.println(this);
 			return true;
 		}
 		return false;
