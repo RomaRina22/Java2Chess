@@ -1,29 +1,34 @@
 package java2.hexChess.hexChessGame;
-import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Effect;
+import javafx.scene.control.Label;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
-import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import model.Board;
 import model.Spot;
 import model.SpotStates;
 
 public class GamefieldController {
-	private class SpotButton {
+	private static class SpotButton {
 		public Button button;
 		public Spot spot;
 	}
+	//static AnchorPane anchor;
 	@FXML AnchorPane anchor;
 	@FXML Button BttBack;
 	static SpotButton[][] ButtonsArray;
@@ -32,17 +37,27 @@ public class GamefieldController {
 	static Background available = new Background(new BackgroundFill(Color.LIGHTGRAY, null, null));
 	static Background calm = new Background(new BackgroundFill(Color.DARKGRAY, null, null));
 	static SVGPath hexagon;
+	static Label[] playerLabels;
 	
 	public void initialize() {
+		//anchor = anchorage;
+		VBox labelholder = new VBox();
+		playerLabels = new Label[6];
+		for (int i = 0; i < 6; i++) {
+			playerLabels[i] = new Label();
+		}
 		
+		labelholder.getChildren().addAll(playerLabels);
 		
+		anchor.getChildren().add(labelholder);
 		hexagon = new SVGPath();
 		hexagon.setContent("M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z");
 		
 		ButtonsArray = loadField(App.GameSettings.getActiveBoard());
 		System.out.println(ButtonsArray+ " " +ButtonsArray.length);
 		System.out.println("preview "+ButtonsArray[0][0]+"["+ 0 + " , " + 0 +"], ("+ ButtonsArray[0][0].spot+","+ButtonsArray[0][0].button+") ");
-		Button otherbutt = new Button();
+		BttBack.setAlignment(Pos.BOTTOM_LEFT);
+		/*Button otherbutt = new Button();
 		
 		otherbutt.setShape(hexagon);
 		otherbutt.setMinSize(70.0,70.0);
@@ -52,18 +67,22 @@ public class GamefieldController {
 				otherbutt.setBackground(selected);
 			}
 		});
-		anchor.getChildren().add(otherbutt);
+		anchor.getChildren().add(otherbutt);*/
 		renderField(App.GameSettings.getActiveBoard());
 		
 	}
 	
+	public static void reloadField() {
+		//ButtonsArray = loadField(App.GameSettings.getActiveBoard());
+	}
+	
 	public SpotButton[][] loadField(Board currentB) {
 		int boardsize = currentB.getSize();
-		SpotButton[][] ButtonsArray = new SpotButton[boardsize][boardsize];
+		SpotButton[][] ButtonsArrayLoc = new SpotButton[boardsize][boardsize];
 		for (int i = 0; i < boardsize; i++ ) {
 			for (int j = 0; j < boardsize;j++) {
-				ButtonsArray[j][i] = new SpotButton();
-				SpotButton thisButt = ButtonsArray[j][i];
+				ButtonsArrayLoc[j][i] = new SpotButton();
+				SpotButton thisButt = ButtonsArrayLoc[j][i];
 				thisButt.spot = currentB.getSpotByCoords(new int[] {j,i});
 				thisButt.button = new Button();
 				thisButt.button.setShape(hexagon);
@@ -82,20 +101,20 @@ public class GamefieldController {
 		}
 		System.out.println();
 		//System.out.println("preview "+ButtonsArray[0][0]+"["+ 0 + " , " + 0 +"], ("+ ButtonsArray[0][0].spot+","+ButtonsArray[0][0].button+") ");
-		return ButtonsArray;
+		return ButtonsArrayLoc;
 		
 	}
 	
-	public void renderField(Board renderBoard) {
+	public static void renderField(Board renderBoard) {
 		
 		int boardsize = renderBoard.getSize();
 		
-		int height = (int)anchor.getHeight();
-		int width = (int) anchor.getWidth();
-		int xorigin = 100;
-		int yorigin = 100;
+		int height = (int)App.mainStage.getHeight();
+		int width = (int) App.mainStage.getWidth();
+		int xorigin = (int) (width*0.1);
+		int yorigin = (int) (height*0.2);
 		int allowedspace = Math.min(height-100,width);
-		int spotSize = 80;//allowedspace/boardsize;
+		int spotSize = allowedspace/boardsize;
 		System.out.println("spot size is "+spotSize);
 		int hoffset = (int)(0.5*spotSize);
 		int voffset = (int)(0.0*spotSize);
@@ -107,7 +126,6 @@ public class GamefieldController {
 				SpotButton spotButt = (ButtonsArray[j][i]);
 				Button butt = spotButt.button;
 				Spot spot = spotButt.spot;
-				
 				//System.out.print("rendering "+spotButt+"["+ j + " , " + i +"], ("+ spot+","+butt+") ");
 				butt.setLayoutX(xorigin + j*(spotSize+1) - (i%2)*hoffset);
 				butt.setLayoutY(yorigin + i*(spotSize*0.75+1) + (i%2)*voffset);
@@ -116,12 +134,15 @@ public class GamefieldController {
 				if (spot.getPiece() != null) {
 					Image pieceImage = spot.getPiece().getType().getImage();
 					Color playerColor = spot.getPiece().getOwner().getColor();
-					ColorAdjust recolor = new ColorAdjust();
-					recolor.setBrightness(playerColor.getBrightness());
-					recolor.setHue(playerColor.getHue());
-					recolor.setSaturation(playerColor.getSaturation());
+					Blend blender = new Blend();
+					ColorInput cInput = new ColorInput(0,0,spotSize/2,spotSize/2,playerColor);
+					blender.setOpacity(0.5);
+					blender.setTopInput(cInput);
+					blender.setMode(BlendMode.MULTIPLY);
 					ImageView imView = new ImageView(pieceImage);
-					imView.setEffect(recolor);
+					imView.setEffect(blender);
+					imView.setFitWidth(spotSize-20);
+					imView.setFitHeight(spotSize-20);
 					butt.setGraphic(imView);
 				}
 				if (spot.getState().equals(SpotStates.LOCKED)) {
@@ -143,12 +164,24 @@ public class GamefieldController {
 				case LOCKED:
 					butt.setVisible(false);
 					break;
-					
 				}
-				
 			}
 		}
-		
+		int noOfPlayer = 0;
+		for (int i: renderBoard.getPlayerDirections()) {
+			playerLabels[noOfPlayer].setVisible(false);
+			if (i != 0) {
+				playerLabels[noOfPlayer].setText(App.GameSettings.getPlayers().get(noOfPlayer).getName());
+				playerLabels[noOfPlayer].setTextFill(App.GameSettings.getPlayers().get(noOfPlayer).getColor());
+			}
+			if (renderBoard.getCurrentPlayerTurn() == noOfPlayer) {
+				playerLabels[noOfPlayer].setFont(Font.font("System", FontWeight.BOLD, 12.0));
+			}
+			else {
+				playerLabels[noOfPlayer].setFont(Font.font("System", FontWeight.NORMAL, 12.0));
+			}
+			noOfPlayer++;
+		}
 		
 	} 
 	
