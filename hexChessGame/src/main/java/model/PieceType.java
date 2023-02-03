@@ -3,9 +3,11 @@ package model;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
+
 public class PieceType {
 	private String name;
-	private URL image;
+	private Image image;
 	private ArrayList<MovePattern> moves;
 	public String getName() {
 		return name;
@@ -13,10 +15,10 @@ public class PieceType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public URL getImage() {
+	public Image getImage() {
 		return image;
 	}
-	public void setImage(URL image) {
+	public void setImage(Image image) {
 		this.image = image;
 	}
 	public ArrayList<MovePattern> getMoves() {
@@ -25,7 +27,7 @@ public class PieceType {
 	public void setMoves(ArrayList<MovePattern> moves) {
 		this.moves = moves;
 	}
-	public PieceType(String name, URL image, ArrayList<MovePattern> moves) {
+	public PieceType(String name, Image image, ArrayList<MovePattern> moves) {
 		super();
 		setName(name);
 		setImage(image);
