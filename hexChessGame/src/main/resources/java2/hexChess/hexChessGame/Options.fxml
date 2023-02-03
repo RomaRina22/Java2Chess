@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java2.hexChess.hexChessGame.OptionsController">
    <children>
-      <Button fx:id="BttBack" layoutX="39.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Back" />
+      <Button fx:id="BttBack" layoutX="39.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Back" onAction="#returnToMenu"/>
       <Button fx:id="BttSave" layoutX="503.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Save" />
       <ComboBox fx:id="CboxColor" layoutX="225.0" layoutY="262.0" prefWidth="150.0" promptText="Color" />
       <ComboBox fx:id="BttBoardName" layoutX="226.0" layoutY="153.0" prefWidth="150.0" promptText="BoardName" />

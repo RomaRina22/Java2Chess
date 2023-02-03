@@ -21,7 +21,7 @@ public class OptionsController {
 		private Stage stage;
 		private Scene scene;
 		private Parent parent;
-		public static Color temp;
+		public static model.Color temp;
 		
 		@FXML
 		private TextField TextName;
@@ -54,7 +54,12 @@ public class OptionsController {
 		{
 			//TODO ielādēt trīs valstis combobox komponentē
 	    	CboxColor.getItems().addAll(Color.values());
-	}}
+		}
+	    
+	    public void returnToMenu() {
+	    	App.mainStage.setScene(App.Scenes.get("menu"));
+	    }
+}
 
 
 
