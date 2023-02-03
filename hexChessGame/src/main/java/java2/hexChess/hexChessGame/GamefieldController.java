@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -110,6 +112,18 @@ public class GamefieldController {
 				butt.setLayoutX(xorigin + j*(spotSize+1) - (i%2)*hoffset);
 				butt.setLayoutY(yorigin + i*(spotSize*0.75+1) + (i%2)*voffset);
 				butt.setMinSize(spotSize, spotSize);
+				butt.setGraphic(null);
+				if (spot.getPiece() != null) {
+					Image pieceImage = spot.getPiece().getType().getImage();
+					Color playerColor = spot.getPiece().getOwner().getColor();
+					ColorAdjust recolor = new ColorAdjust();
+					recolor.setBrightness(playerColor.getBrightness());
+					recolor.setHue(playerColor.getHue());
+					recolor.setSaturation(playerColor.getSaturation());
+					ImageView imView = new ImageView(pieceImage);
+					imView.setEffect(recolor);
+					butt.setGraphic(imView);
+				}
 				if (spot.getState().equals(SpotStates.LOCKED)) {
 					butt.setVisible(false);
 				}
