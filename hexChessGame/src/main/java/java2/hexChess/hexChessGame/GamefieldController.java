@@ -1,6 +1,8 @@
 package java2.hexChess.hexChessGame;
 import java.net.URL;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -34,7 +36,11 @@ public class GamefieldController {
 		otherbutt.setMinSize(50.0,50.0);
 		otherbutt.setLayoutX(60.0);
 		otherbutt.setBackground(new Background(new BackgroundFill(Color.AZURE,null,null)));
-		
+		otherbutt.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				otherbutt.setBackground(selected);
+			}
+		});
 		anchor.getChildren().add(newbutt);
 		anchor.getChildren().add(otherbutt);
 	}
