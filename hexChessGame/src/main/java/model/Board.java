@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import java2.hexChess.hexChessGame.App;
+
 public class Board {
 	private String name;
 	private Spot[][] spots;
@@ -168,7 +170,10 @@ public class Board {
 	
 	public void nextTurn() {
 		currentPlayerTurn++;
-		if (playerDirections[currentPlayerTurn] == 0 || currentPlayerTurn > 6) {
+		if (playerDirections[currentPlayerTurn] == 0) {
+			if (currentPlayerTurn > 6) {
+				App.GameSettings.setGameTurn(App.GameSettings.getGameTurn()+1);
+			}
 			currentPlayerTurn = 0;
 		}
 	}
