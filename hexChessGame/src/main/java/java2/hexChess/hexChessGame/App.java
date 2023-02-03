@@ -36,6 +36,7 @@ public class App extends Application {
         BoardLoader Boarder = new BoardLoader();
         Boarder.initpieces();
         GameSettings.allBoards.add(BoardLoader.board1());
+        GameSettings.setActiveBoard(GameSettings.allBoards.get(0));
         mainStage = stage;
         stage.setScene(Scenes.get("gamefield"));
         stage.show();
