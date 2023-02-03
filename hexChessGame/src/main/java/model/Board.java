@@ -70,6 +70,7 @@ public class Board {
 	public boolean selectPiece (Spot target) {
 		if (state.equals(BoardState.CALM)) {
 			if (target.getPiece().getOwner().equals(GameSettings.allPlayers.get(currentPlayerTurn))) {
+				resetSpotStates();
 				target.setState(SpotStates.SELECTED);
 				updateSpotStates(target, getAvailableMoves(target));
 				selectedPiece = target;
@@ -137,8 +138,8 @@ public class Board {
 			Spot turtle;
 			for (MovePattern currentMove: moves) {
 				turtle = origin;
-				int movingDirection = currentMove.getDirection() + ownerDirection-1;
-				int i = 0;
+				int movingDirection = (currentMove.getDirection() + ownerDirection-1)%6 ;
+				int i = 1;
 				while (i <= currentMove.getMaxDistance()) {
 					turtle = getSpotByCoords(turtle.getNeighborCoords(movingDirection)); //move turtle forward by one space
 					if (turtle == null) {break;} //if going off board stop moving

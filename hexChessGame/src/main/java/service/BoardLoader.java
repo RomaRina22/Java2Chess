@@ -33,7 +33,7 @@ public class BoardLoader {
 		for (int i = 1; i < 7; i++) {
 			kingMoves.add(new MovePattern(i, 1, 1, false, null));
 		}
-		PieceType king = new PieceType("king", new Image(getClass().getResourceAsStream("/img/king.png")), null);
+		PieceType king = new PieceType("king", new Image(getClass().getResourceAsStream("/img/king.png")), kingMoves);
 		
 		ArrayList<MovePattern> rookMoves = new ArrayList<>();
 		for (int i = 1; i < 7; i++) {
