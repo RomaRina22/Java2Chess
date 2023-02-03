@@ -9,9 +9,9 @@
   <buttons>
       <AnchorPane prefHeight="720.0" prefWidth="720.0">
          <children>
-          <Button fx:id="BttPlay" layoutX="179.0" layoutY="101.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Play" />
-            <Button fx:id="BttOptions" layoutX="179.0" layoutY="151.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Options" />
-            <Button fx:id="BttExit" layoutX="179.0" layoutY="202.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="178.0" text="Exit" />
+          <Button fx:id="BttPlay" layoutX="179.0" layoutY="101.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Play" onAction="#playGame"/>
+            <Button fx:id="BttOptions" layoutX="179.0" layoutY="151.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="178.0" text="Options" onAction="#openOptions"/>
+            <Button fx:id="BttExit" layoutX="179.0" layoutY="202.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="178.0" text="Exit" onAction="#quitGame"/>
             <ComboBox fx:id="CBoxLang" layoutX="23.0" layoutY="316.0" prefWidth="150.0" promptText="English" />
          </children>
       </AnchorPane>
