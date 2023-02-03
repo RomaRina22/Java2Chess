@@ -145,7 +145,13 @@ public class Board {
 		String retstr = "";
 		for (int i = 0; i < size;i++) {
 			for (int j = 0; j < size; j++) {
-				retstr += String.format("%7d", spots[j][i].getPiece());
+				if (spots[j][i].getPiece() == null) {
+					retstr += String.format("%7s", "-");
+					}
+				else {
+					retstr += String.format("%7s", spots[j][i].getPiece().getType().getName());
+				}
+				
 			}
 			retstr += "\n";
 		}
