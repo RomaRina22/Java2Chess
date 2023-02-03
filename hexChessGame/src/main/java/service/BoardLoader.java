@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java2.hexChess.hexChessGame.App;
 import model.*;
 
 public class BoardLoader {
@@ -86,8 +88,10 @@ public class BoardLoader {
 	}
 	
 	public static Board board1() {
-		Board boardOne = new Board(11, "board1");
-		System.out.println(boardOne);
+		int size = 11;
+		Player player1 = App.GameSettings.allPlayers.get(0);
+		Player player2 = App.GameSettings.allPlayers.get(1);
+		Board boardOne = new Board(size, "board1");
 		ArrayList<int[]> lockspots = new ArrayList<>();
 		lockspots.add(new int[] {0,0});lockspots.add(new int[] {1,0});lockspots.add(new int[] {8,0});lockspots.add(new int[] {9,0});lockspots.add(new int[] {10,0});
 		lockspots.add(new int[] {0,1});lockspots.add(new int[] {1,1});lockspots.add(new int[] {9,1});lockspots.add(new int[] {10,1});
@@ -102,6 +106,32 @@ public class BoardLoader {
 		for (int[] coord: lockspots) {
 			boardOne.getSpotByCoords(coord).setState(SpotStates.LOCKED);
 		}
+		for (int i = 0;i < size;i++) {
+			Spot spot = boardOne.getSpotByCoords(new int[]{i,1});
+			if (spot.getState().equals(SpotStates.CALM)) {
+				spot.setPiece(new Piece(player1, pieces.get("pawn")));
+			}
+		}
+		for (int i = 0;i < size;i++) {
+			Spot spot = boardOne.getSpotByCoords(new int[]{i,9});
+			if (spot.getState().equals(SpotStates.CALM)) {
+				spot.setPiece(new Piece(player2, pieces.get("pawn")));
+			}
+		}
+		boardOne.getSpotByCoords(new int[] {2, 0}).setPiece(new Piece(player1, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {7, 0}).setPiece(new Piece(player1, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {2, 10}).setPiece(new Piece(player2, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {7, 10}).setPiece(new Piece(player2, pieces.get("rook")));
+		boardOne.getSpotByCoords(new int[] {3, 0}).setPiece(new Piece(player1, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {6, 0}).setPiece(new Piece(player1, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {3, 10}).setPiece(new Piece(player2, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {6, 10}).setPiece(new Piece(player2, pieces.get("knight")));
+		boardOne.getSpotByCoords(new int[] {5, 0}).setPiece(new Piece(player1, pieces.get("king")));
+		boardOne.getSpotByCoords(new int[] {5, 10}).setPiece(new Piece(player2, pieces.get("king")));
+		boardOne.getSpotByCoords(new int[] {4, 0}).setPiece(new Piece(player1, pieces.get("queen")));
+		boardOne.getSpotByCoords(new int[] {4, 10}).setPiece(new Piece(player2, pieces.get("queen")));
+		
+		
 		System.out.println(boardOne);
 		
 		return boardOne;
